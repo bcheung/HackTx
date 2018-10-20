@@ -8,20 +8,12 @@ function* registerFlow(data) {
     if (data.password !== data.confirmPassword) {
       throw new Error('Password do not match');
     }
-    let role;
-    if (data.email.indexOf('@utexas.edu') !== -1) {
-      role = 'member';
-    } else if (data.email.indexOf('@stu.austinisd.org') !== -1) {
-      role = 'student';
-    } else {
-      role = 'guest';
-    }
     // try register() with data
     // wait for register response
     const response = yield call(fbAPI.register, data);
     const authUser = response.user;
     // create user doc
-    yield call(fbAPI.createUserDoc, { ...data, role }, authUser);
+    yield call(fbAPI.createUserDoc, { ...data }, authUser);
     yield call(fbAPI.sendVerificationEmail);
     // when createUserDoc completes,
     // dispatch action of type REGISTER_SUCCESS with authUser

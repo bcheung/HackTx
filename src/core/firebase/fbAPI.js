@@ -155,7 +155,7 @@ export function getTimestamp() {
 // Create user in firestore
 export function createUserDoc(data, authUser) {
   console.tron.log('createUser', authUser.uid);
-  const { firstName, lastName, email, year, role } = data;
+  const { firstName, lastName, email } = data;
   firestore
     .collection('users')
     .doc(authUser.uid)
@@ -163,8 +163,6 @@ export function createUserDoc(data, authUser) {
       firstName,
       lastName,
       email,
-      year,
-      role
     })
     .catch(error => {
       throw error;

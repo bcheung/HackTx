@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { registerRequest } from '../actions';
 import { getFormStatus } from '../../form/selectors';
 import { ReduxForm } from '../../form/ReduxForm';
-import { required, minLength, schoolEmail, emailFormat, number } from '../../form/FormValidation';
+import { required, minLength, emailFormat } from '../../form/FormValidation';
 import styles from '../styles';
 import theme from '../../../styles/theme';
 
@@ -22,13 +22,6 @@ const FIELDS = {
     secureTextEntry: false,
     autoCapitalize: 'words',
     validate: [required]
-  },
-  year: {
-    type: 'TextField',
-    label: 'Year',
-    secureTextEntry: false,
-    autoCapitalize: 'none',
-    validate: [required, number]
   },
   email: {
     type: 'TextField',
@@ -60,11 +53,9 @@ class RegisterScreen extends Component {
 
   onSubmit = values => {
     const { firstName, lastName, email, password, confirmPassword } = values;
-    const year = parseInt(values.year);
     this.props.registerRequest({
       firstName,
       lastName,
-      year,
       email,
       password,
       confirmPassword

@@ -23,7 +23,7 @@ export const loginRequest = data => {
   };
 };
 
-// data = { firstName, lastName, year, email, password, confirmPassword }
+// data = { firstName, lastName, email, password, confirmPassword }
 export const registerRequest = data => {
   return {
     type: types.REGISTER_REQUEST,

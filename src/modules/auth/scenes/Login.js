@@ -36,16 +36,21 @@ class Login extends Component {
   };
 
   render() {
+    const initialVaules = {
+      initialValues: {
+        email: 'bcheung2017@gmail.com',
+        password: 'hacker123'
+      }
+    };
     return (
-      <View
-        style={theme.container}
-      >
+      <View style={theme.container}>
         <ReduxForm
           onSubmit={this.onSubmit}
           title={{ label: 'Login', style: theme.titleStyle }}
           fields={FIELDS}
           submitName={'Login'}
           status={this.props.formStatus}
+          {...initialVaules}
         />
       </View>
     );

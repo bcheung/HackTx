@@ -11,8 +11,6 @@ class Home extends Component {
           <Text>{this.props.user.firstName}</Text>
           <Text>{this.props.user.lastName}</Text>
           <Text>{this.props.user.email}</Text>
-          <Text>{this.props.user.role}</Text>
-          <Text>{this.props.user.year}</Text>
         </View>
       );
     }

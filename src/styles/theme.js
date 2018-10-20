@@ -47,7 +47,7 @@ export default StyleSheet.create({
     marginTop: 20, 
     marginBottom: 40,
     fontSize: 70,
-    alignSelf: 'center',
-    fontFamily: 'Autery'
+    alignSelf: 'center'
+    // fontFamily: 'Autery'
   }
 });
