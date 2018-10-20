@@ -5,22 +5,6 @@ import * as fbCred from './FirebaseCredentials';
 import * as authService from './authService';
 import NavigationService from '../navigation/NavigationService';
 
-// export class Firebase {
-//   static auth;
-//   static firestore;
-//   static settings;
-//   static init() {
-//     console.tron.log('Initialize Firebase');
-//     firebase.initializeApp(firebaseConfig);
-
-//     console.tron.log('Initialize Firebase auth');
-//     Firebase.auth = firebase.auth();
-//     Firebase.firestore = firebase.firestore();
-//     Firebase.settings = { timestampsInSnapshots: true };
-//     Firebase.firestore.settings(settings);
-//   }
-// }
-
 // Initialize Firebase
 const firebaseConfig = {
   apiKey: fbCred.FIREBASE_API_KEY,
