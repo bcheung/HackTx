@@ -15,6 +15,8 @@ import {
 import { Constants, Permissions, ImagePicker } from 'expo';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { connect } from 'react-redux';
+import { uploadImageRequest } from '../actions';
 import { Card, CardSection, Button } from '../../../components';
 
 const items = [
@@ -292,7 +294,7 @@ const Toggle = props => (
   </TouchableWithoutFeedback>
 );
 
-export default class App extends Component {
+class CreateNote extends Component {
   constructor() {
     super();
     this.state = {
@@ -496,7 +498,8 @@ export default class App extends Component {
       }).catch(error => console.log(permissions, { error }));
       console.log(permissions, 'SUCCESS', image);
       if (!image.cancelled) {
-        this.setState({ image: image.uri });
+        this.props.uploadImageRequest(image.uri);
+        // this.setState({ image: image.uri });
       }
     }
   };
@@ -598,3 +601,12 @@ export default class App extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+	return state;
+  };
+  
+  export default connect(
+	mapStateToProps,
+	{ uploadImageRequest }
+  )(CreateNote);
