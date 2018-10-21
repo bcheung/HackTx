@@ -8,12 +8,12 @@ export default class HeaderIcons extends React.Component {
       <View>
         <Header>
           <Left>
-            <Button 
+            <Button
               transparent
               onPress={() => this.props.navigation.openDrawer()}
-              title='Open DrawNavigator'
+              title="Open DrawNavigator"
             >
-              <Icon name='menu' />
+              <Icon name="menu" />
             </Button>
           </Left>
           <Body>
@@ -22,6 +22,7 @@ export default class HeaderIcons extends React.Component {
           <Right>
             <Button transparent>
               <Icon name='ios-add-circle-outline' />
+
             </Button>
           </Right>
         </Header>

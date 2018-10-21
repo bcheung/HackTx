@@ -7,6 +7,7 @@ import './src/core/reactotron/ReactotronConfig';
 import configureStore from './src/redux/configureStore';
 import { RootNavigator } from './src/core/navigation/RouterConfig';
 import NavigationService from './src/core/navigation/NavigationService';
+import ReceiptScanner from './src/modules/create_note/scenes/ReceiptScanner';
 
 const store = configureStore();
 
@@ -28,25 +29,24 @@ export default class App extends Component {
     isLoadingComplete: false
   };
 
-  
   componentDidMount() {
     Font.loadAsync({
-    //   'Autery': require('./assets/fonts/Autery.ttf'),
+      //   'Autery': require('./assets/fonts/Autery.ttf'),
     });
   }
 
   onLoad = () => {
     Animated.timing(this.state.opacity, {
-       toValue: 1,
-       duration: 500,
-       useNativeDriver: true,
-     }).start();
-  }
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true
+    }).start();
+  };
 
   async _loadAssetsAsync() {
     const imageAssets = cacheImages([
       // 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
-    //   require('./assets/Logo.png')
+      //   require('./assets/Logo.png')
     ]);
 
     const fontAssets = cacheFonts([FontAwesome.font]);
@@ -62,7 +62,6 @@ export default class App extends Component {
   _handleFinishLoading = () => {
     this.setState({ isLoadingComplete: true });
   };
-
 
   render() {
     if (!this.state.isLoadingComplete) {

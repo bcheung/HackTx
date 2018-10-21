@@ -13,6 +13,7 @@ import VerifyEmail from '../../modules/auth/scenes/VerifyEmail';
 import Home from '../../modules/main/scenes/Home';
 import Settings from '../../modules/main/scenes/Settings';
 import Groups from '../../modules/groups/scenes/Groups';
+import CreateNote from '../../modules/create_note/scenes/CreateNote';
 
 const AuthStack = createStackNavigator(
   {
@@ -25,31 +26,6 @@ const AuthStack = createStackNavigator(
     initialRouteName: 'Welcome'
   }
 );
-
-// const AnnouncementStack = createStackNavigator(
-//   {
-//     AnnouncementFeed: { screen: AnnouncementFeed },
-//     AnnouncementCreate: { screen: AnnouncementCreate },
-//     AnnouncementView: { screen: AnnouncementView }
-//   },
-//   {
-//     initialRouteName: 'AnnouncementFeed'
-//     // headerMode: 'none',
-//     // mode: 'modal'
-//   }
-// );
-
-// const PollStack = createStackNavigator(
-//   {
-//     PollView: { screen: PollView },
-//     PollFeed: { screen: PollFeed },
-//     PollCreate: { screen: PollCreate },
-//     PollResults: { screen: PollResults }
-//   },
-//   {
-//     initialRouteName: 'PollFeed'
-//   }
-// );
 
 export const HomeNav = createMaterialTopTabNavigator(
   {
@@ -86,34 +62,32 @@ export const HomeNav = createMaterialTopTabNavigator(
 const AppSideBar = createDrawerNavigator(
   {
     Home: { screen: Home },
-    Groups: { screen: Groups },
+    Groups: { screen: Groups
+    }
   },
   {
-    initialRouteName: 'Home',
-    drawerPosition: 'left',
+    initialRouteName: 'Groups',
+    drawerPosition: 'left'
   }
 );
 
-
-// const AppSwitch = createSwitchNavigator(
-//   {
-//     // AnnouncementStack,
-//     // PollStack,
-//     Home: { screen: Home },
-//     Groups: { screen: Groups },
-//     Settings: { screen: Settings }
-//   },
-//   {
-//     initialRouteName: 'Groups'
-//   }
-// );
+const AppStack = createStackNavigator(
+  {
+	AppSideBar,
+    CreateNote: { screen: CreateNote }
+  },
+  {
+	initialRouteName: 'AppSideBar',
+	headerMode: 'none'
+  }
+);
 
 export const RootNavigator = createSwitchNavigator(
   {
     Splash,
     Initialization,
     Auth: AuthStack,
-    App: AppSideBar
+    App: AppStack
   },
   {
     initialRouteName: 'Splash'

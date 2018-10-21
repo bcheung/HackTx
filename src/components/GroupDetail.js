@@ -19,18 +19,19 @@ const GroupDetail = (props) => {
         <View style={groupInfoStyle}>
           <Text style={{ fontSize: 30 }}>
             {props.name}
+
           </Text>
           <Text>
             {props.people}
           </Text>
         </View>
 
-        <View style={thumbnailContainerStyle}>
+        {/* <View style={thumbnailContainerStyle}>
           <Image
             style={statusPicStyle}
             source={require('../../assets/dollar-symbol.png')}
           />
-        </View>
+        </View> */}
       </TouchableOpacity>
     </View>
   );
