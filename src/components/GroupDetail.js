@@ -18,19 +18,19 @@ const GroupDetail = () => {
 
         <View style={groupInfoStyle}>
           <Text style={{ fontSize: 30 }}>
-            GangGang
+            Group Name
           </Text>
           <Text>
             member names
           </Text>
         </View>
 
-        <View style={thumbnailContainerStyle}>
+        {/* <View style={thumbnailContainerStyle}>
           <Image
             style={statusPicStyle}
             source={require('../../assets/Logo.png')}
           />
-        </View>
+        </View> */}
       </TouchableOpacity>
     </View>
   );

@@ -8,7 +8,7 @@ class Groups extends Component {
     tabBarLabel: 'Screen Group',
     drawerIcon: () => {
       return (
-        <Text>LOLKMS</Text>
+        <Text>Test</Text>
       );
     }
     // headerRight: (

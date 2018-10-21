@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  FlatList,
   Platform,
   StyleSheet,
   Text,
@@ -18,6 +19,20 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { connect } from 'react-redux';
 import { uploadImageRequest } from '../actions';
 import { Card, CardSection, Button } from '../../../components';
+import AnnouncementListItem from '../components/AnnouncementListItem';
+
+const data = [
+  { item: ' GREY G0OSE', quantity: 1, price: 18.471416252935448 },
+  { item: ' A PANNA 1L', quantity: 1, price: 8.983239606750532 },
+  { item: ' BV LaTDUR D25', quantity: 1, price: 272.11608952281756 },
+  { item: ' VEAL CHOP', quantity: 1, price: 64.34819678760812 },
+  { item: 'DUCK', quantity: 1, price: 35.42782986956768 },
+  { item: ' CRAB CAKE', quantity: 1, price: 17.229685049999514 },
+  { item: ' BREAD PUDDING', quantity: 1, price: 7.820722996980247 },
+  { item: ' CHOCOLATE CAKE', quantity: 1, price: 8.693639651400963 },
+  { item: ' SGL ESPRESSO', quantity: 1, price: 4.227994593044318 },
+  { item: ' CHIVAS 12 YR', quantity: 1, price: 8.224835164835165 }
+];
 
 const items = [
   {
@@ -295,6 +310,7 @@ const Toggle = props => (
 );
 
 class CreateNote extends Component {
+  state = { data: null };
   constructor() {
     super();
     this.state = {
@@ -498,11 +514,23 @@ class CreateNote extends Component {
       }).catch(error => console.log(permissions, { error }));
       console.log(permissions, 'SUCCESS', image);
       if (!image.cancelled) {
-        this.props.uploadImageRequest(image.uri);
-        // this.setState({ image: image.uri });
+        // this.props.uploadImageRequest(image.uri);
+        this.setState({ data });
       }
     }
   };
+
+  renderItem(announcement) {
+    return (
+      <AnnouncementListItem data={announcement.item} />
+      //       <Card style={{ marginLeft: 0, marginRight: 0 }}>
+      //         <CardSection>
+      //           {/* <Text style={{ flex: 1 }}>{title}</Text> */}
+      //           <Text style={styles.textStyle}>{body}</Text>
+      //         </CardSection>
+      //       </Card>
+    );
+  }
 
   render() {
     return (
@@ -587,9 +615,11 @@ class CreateNote extends Component {
             <Text style={styles.heading}>Details</Text>
           </View>
           <CardSection>
-            <Button style={styles.buttonStyle2}>
-              <Text style={styles.textStyle}>Enter Details</Text>
-            </Button>
+            <FlatList
+              data={this.state.data}
+              renderItem={this.renderItem}
+              keyExtractor={entry => entry.item}
+            />
           </CardSection>
         </View>
         <CardSection>
@@ -603,10 +633,10 @@ class CreateNote extends Component {
 }
 
 const mapStateToProps = state => {
-	return state;
-  };
-  
-  export default connect(
-	mapStateToProps,
-	{ uploadImageRequest }
-  )(CreateNote);
+  return state;
+};
+
+export default connect(
+  mapStateToProps,
+  { uploadImageRequest }
+)(CreateNote);

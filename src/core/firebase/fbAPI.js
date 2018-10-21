@@ -1,3 +1,5 @@
+import { FileReader } from 'react';
+import XMLHttpRequest from 'react-native';
 import firebase from 'firebase';
 import 'firebase/firestore';
 import moment from 'moment';
@@ -34,13 +36,28 @@ export function initializeFirebase() {
 }
 
 export function uploadImage(data) {
-	const { blob, uid } = data;
-  const ref = firebase
-    .storage()
-    .ref()
-    .child(`${uid}/receipt.jpg`);
-  ref.put(blob).then(snapshot => {
-    console.tron.log('Uploaded a blob or file!');
+  const { blob, uid } = data;
+  const receiptsRef = storage.refFromURL('gs://uoweme-hacktx.appspot.com').child(`${uid}.jpg`);
+  const processedRef = storage.refFromURL('gs://receipt-processed-bucket').child(`${uid}.jpg.json`);
+  receiptsRef.put(blob).then(snapshot => {
+    console.tron.log('Image uploaded!');
+    processedRef
+      .getDownloadURL()
+      .then(url => {
+        const xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = function (event) {
+          const blobProcessed = xhr.response;
+          const reader = new FileReader();
+          reader.readAsText(blobProcessed);
+          console.tron.log('download Image', blobProcessed);
+        };
+        xhr.open('GET', url);
+        xhr.send();
+      })
+      .catch(error => {
+        // Handle any errors
+      });
   });
 }
 
