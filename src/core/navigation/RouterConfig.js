@@ -11,12 +11,8 @@ import Register from '../../modules/auth/scenes/Register';
 import VerifyEmail from '../../modules/auth/scenes/VerifyEmail';
 import Home from '../../modules/main/scenes/Home';
 import Settings from '../../modules/main/scenes/Settings';
-<<<<<<< HEAD
 import Groups from '../../modules/groups/scenes/Groups';
 import CreateNote from '../../modules/create_note/scenes/CreateNote';
-=======
-import ReceiptScanner from '../../modules/create_note/scenes/ReceiptScanner';
->>>>>>> 7b02a37530fd3f909ae87aba569273a62c4fddba
 
 const AuthStack = createStackNavigator(
   {
