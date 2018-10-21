@@ -1,7 +1,7 @@
 import {
   createSwitchNavigator,
   createStackNavigator,
-  createBottomTabNavigator
+  createDrawerNavigator
 } from 'react-navigation';
 import Splash from '../../modules/auth/scenes/Splash';
 import Initialization from '../../modules/auth/scenes/Initialization';
@@ -11,7 +11,8 @@ import Register from '../../modules/auth/scenes/Register';
 import VerifyEmail from '../../modules/auth/scenes/VerifyEmail';
 import Home from '../../modules/main/scenes/Home';
 import Settings from '../../modules/main/scenes/Settings';
-
+import Groups from '../../modules/groups/scenes/Groups';
+import CreateNote from '../../modules/create_note/scenes/CreateNote';
 
 const AuthStack = createStackNavigator(
   {
@@ -25,40 +26,27 @@ const AuthStack = createStackNavigator(
   }
 );
 
-// const AnnouncementStack = createStackNavigator(
-//   {
-//     AnnouncementFeed: { screen: AnnouncementFeed },
-//     AnnouncementCreate: { screen: AnnouncementCreate },
-//     AnnouncementView: { screen: AnnouncementView }
-//   },
-//   {
-//     initialRouteName: 'AnnouncementFeed'
-//     // headerMode: 'none',
-//     // mode: 'modal'
-//   }
-// );
-
-// const PollStack = createStackNavigator(
-//   {
-//     PollView: { screen: PollView },
-//     PollFeed: { screen: PollFeed },
-//     PollCreate: { screen: PollCreate },
-//     PollResults: { screen: PollResults }
-//   },
-//   {
-//     initialRouteName: 'PollFeed'
-//   }
-// );
-
-const AppStack = createBottomTabNavigator(
+const AppSideBar = createDrawerNavigator(
   {
-    // AnnouncementStack,
-    // PollStack,
-    Home: { screen: Home },
-    Settings: { screen: Settings }
+    Groups: {
+      path: '/',
+      screen: Groups
+    }
   },
   {
-    initialRouteName: 'Home'
+    initialRouteName: 'Groups',
+    drawerPosition: 'left'
+  }
+);
+
+const AppStack = createStackNavigator(
+  {
+	AppSideBar,
+    CreateNote: { screen: CreateNote }
+  },
+  {
+	initialRouteName: 'AppSideBar',
+	headerMode: 'none'
   }
 );
 
