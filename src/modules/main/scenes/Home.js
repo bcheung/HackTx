@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import { GroupDetail } from '../../../components';
 
 class Home extends Component {
   renderView() {
@@ -22,9 +23,7 @@ class Home extends Component {
 
   render() {
     return (
-      <View>
-        {this.renderView()}
-      </View>
+      <GroupDetail />
     );
   }
 }

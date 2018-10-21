@@ -1,7 +1,7 @@
 import {
   createSwitchNavigator,
   createStackNavigator,
-  createBottomTabNavigator
+  createDrawerNavigator
 } from 'react-navigation';
 import Splash from '../../modules/auth/scenes/Splash';
 import Initialization from '../../modules/auth/scenes/Initialization';
@@ -11,7 +11,7 @@ import Register from '../../modules/auth/scenes/Register';
 import VerifyEmail from '../../modules/auth/scenes/VerifyEmail';
 import Home from '../../modules/main/scenes/Home';
 import Settings from '../../modules/main/scenes/Settings';
-
+import Groups from '../../modules/groups/scenes/Groups';
 
 const AuthStack = createStackNavigator(
   {
@@ -50,24 +50,38 @@ const AuthStack = createStackNavigator(
 //   }
 // );
 
-const AppStack = createBottomTabNavigator(
+const AppSideBar = createDrawerNavigator(
   {
-    // AnnouncementStack,
-    // PollStack,
-    Home: { screen: Home },
-    Settings: { screen: Settings }
+    Groups: {
+      path: '/',
+      screen: Groups,
+    },
   },
   {
-    initialRouteName: 'Home'
+    initialRouteName: 'Groups',
+    drawerPosition: 'left',
   }
 );
+
+// const AppSwitch = createSwitchNavigator(
+//   {
+//     // AnnouncementStack,
+//     // PollStack,
+//     Home: { screen: Home },
+//     Groups: { screen: Groups },
+//     Settings: { screen: Settings }
+//   },
+//   {
+//     initialRouteName: 'Groups'
+//   }
+// );
 
 export const RootNavigator = createSwitchNavigator(
   {
     Splash,
     Initialization,
     Auth: AuthStack,
-    App: AppStack
+    App: AppSideBar
   },
   {
     initialRouteName: 'Splash'
