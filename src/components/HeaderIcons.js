@@ -8,20 +8,20 @@ export default class HeaderIcons extends React.Component {
       <View>
         <Header>
           <Left>
-            <Button 
+            <Button
               transparent
               onPress={() => this.props.navigation.openDrawer()}
-              title='Open DrawNavigator'
+              title="Open DrawNavigator"
             >
-              <Icon name='menu' />
+              <Icon name="menu" />
             </Button>
           </Left>
           <Body>
             <Title>Header</Title>
           </Body>
           <Right>
-            <Button transparent>
-              <Icon name='beer' />
+            <Button transparent onPress={() => this.props.navigation.push('CreateNote')}>
+              <Icon name="beer" />
             </Button>
           </Right>
         </Header>

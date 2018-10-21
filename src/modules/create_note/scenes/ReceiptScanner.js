@@ -30,7 +30,7 @@ export default class App extends Component {
     if (results.some(({ status }) => status === 'granted')) {
       const image = await ImagePicker.launchCameraAsync({
         mediaTypes: 'Images'
-    //   }).catch(error => console.log(permissions, { error }));
+      }).catch(error => console.log(permissions, { error }));
       console.log(permissions, 'SUCCESS', image);
       if (!image.cancelled) {
         this.setState({ image: image.uri });

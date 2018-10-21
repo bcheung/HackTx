@@ -557,7 +557,7 @@ export default class App extends Component {
         />
 
         <CardSection>
-          <Button style={styles.buttonStyle}>
+          <Button style={styles.buttonStyle} onPress={this.pickFromCamera}>
             <Text style={styles.textStyle}>Scan</Text>
           </Button>
         </CardSection>
