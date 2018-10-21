@@ -20,7 +20,7 @@ export default class HeaderIcons extends React.Component {
             <Title>{this.props.title}</Title>
           </Body>
           <Right>
-            <Button transparent>
+            <Button transparent onPress={() => this.props.navigation.navigate('CreateNote')}>
               <Icon name='ios-add-circle-outline' />
 
             </Button>

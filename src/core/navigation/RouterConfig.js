@@ -34,7 +34,7 @@ export const HomeNav = createMaterialTopTabNavigator(
   },
   {
     flex: 1,
-    flexGrow: 1, 
+    flexGrow: 1,
     height: 200,
     initialRouteName: 'Settings',
     swipeEnabled: true,
@@ -62,8 +62,10 @@ export const HomeNav = createMaterialTopTabNavigator(
 const AppSideBar = createDrawerNavigator(
   {
     Home: { screen: Home },
-    Groups: { screen: Groups
-    }
+    Groups: {
+      screen: Groups
+    },
+    Settings: { screen: Settings }
   },
   {
     initialRouteName: 'Groups',
@@ -73,12 +75,12 @@ const AppSideBar = createDrawerNavigator(
 
 const AppStack = createStackNavigator(
   {
-	AppSideBar,
+    AppSideBar,
     CreateNote: { screen: CreateNote }
   },
   {
-	initialRouteName: 'AppSideBar',
-	headerMode: 'none'
+    initialRouteName: 'AppSideBar',
+    headerMode: 'none'
   }
 );
 
