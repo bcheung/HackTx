@@ -11,7 +11,7 @@ import Register from '../../modules/auth/scenes/Register';
 import VerifyEmail from '../../modules/auth/scenes/VerifyEmail';
 import Home from '../../modules/main/scenes/Home';
 import Settings from '../../modules/main/scenes/Settings';
-
+import ReceiptScanner from '../../modules/create_note/scenes/ReceiptScanner';
 
 const AuthStack = createStackNavigator(
   {
@@ -54,7 +54,8 @@ const AppStack = createBottomTabNavigator(
   {
     // AnnouncementStack,
     // PollStack,
-    Home: { screen: Home },
+	Home: { screen: Home },
+	ReceiptScanner: { screen: ReceiptScanner },
     Settings: { screen: Settings }
   },
   {

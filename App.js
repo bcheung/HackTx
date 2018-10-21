@@ -7,7 +7,7 @@ import './src/core/reactotron/ReactotronConfig';
 import configureStore from './src/redux/configureStore';
 import { RootNavigator } from './src/core/navigation/RouterConfig';
 import NavigationService from './src/core/navigation/NavigationService';
-import ReceiptScanner from './src/modules/reciept_scanner/scenes/ReceiptScanner';
+import ReceiptScanner from './src/modules/create_note/scenes/ReceiptScanner';
 
 const store = configureStore();
 
@@ -29,25 +29,24 @@ export default class App extends Component {
     isLoadingComplete: false
   };
 
-  
   componentDidMount() {
     Font.loadAsync({
-    //   'Autery': require('./assets/fonts/Autery.ttf'),
+      //   'Autery': require('./assets/fonts/Autery.ttf'),
     });
   }
 
   onLoad = () => {
     Animated.timing(this.state.opacity, {
-       toValue: 1,
-       duration: 500,
-       useNativeDriver: true,
-     }).start();
-  }
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true
+    }).start();
+  };
 
   async _loadAssetsAsync() {
     const imageAssets = cacheImages([
       // 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
-    //   require('./assets/Logo.png')
+      //   require('./assets/Logo.png')
     ]);
 
     const fontAssets = cacheFonts([FontAwesome.font]);
@@ -64,28 +63,26 @@ export default class App extends Component {
     this.setState({ isLoadingComplete: true });
   };
 
-
   render() {
-	return <ReceiptScanner />;
-    // if (!this.state.isLoadingComplete) {
-    //   console.tron.log('render App.js AppLoading');
-    //   return (
-    //     <AppLoading
-    //       startAsync={this._loadAssetsAsync}
-    //       onError={this._handleLoadingError}
-    //       onFinish={this._handleFinishLoading}
-    //     />
-    //   );
-    // }
-    // console.tron.log('render App.js Provider');
-    // return (
-    //   <Provider store={store}>
-    //     <RootNavigator
-    //       ref={navigatorRef => {
-    //         NavigationService.setTopLevelNavigator(navigatorRef);
-    //       }}
-    //     />
-    //   </Provider>
-    // );
+    if (!this.state.isLoadingComplete) {
+      console.tron.log('render App.js AppLoading');
+      return (
+        <AppLoading
+          startAsync={this._loadAssetsAsync}
+          onError={this._handleLoadingError}
+          onFinish={this._handleFinishLoading}
+        />
+      );
+    }
+    console.tron.log('render App.js Provider');
+    return (
+      <Provider store={store}>
+        <RootNavigator
+          ref={navigatorRef => {
+            NavigationService.setTopLevelNavigator(navigatorRef);
+          }}
+        />
+      </Provider>
+    );
   }
 }

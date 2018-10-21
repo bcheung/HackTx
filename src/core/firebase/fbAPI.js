@@ -1,6 +1,5 @@
 import firebase from 'firebase';
 import 'firebase/firestore';
-import RNFetchBlob from 'react-native-fetch-blob';
 import moment from 'moment';
 import * as fbCred from './FirebaseCredentials';
 import * as authService from './authService';
@@ -19,6 +18,7 @@ const firebaseConfig = {
 let auth;
 let firestore;
 let storage;
+// let functions;
 let settings;
 export function initializeFirebase() {
   console.tron.log('Initialize Firebase');
@@ -28,41 +28,20 @@ export function initializeFirebase() {
   auth = firebase.auth();
   firestore = firebase.firestore();
   storage = firebase.storage();
+  //   functions = firebase.functions();
   settings = { timestampsInSnapshots: true };
   firestore.settings(settings);
 }
 
-export function uploadImage(image) {
-  const Blob = RNFetchBlob.polyfill.Blob;
-  const fs = RNFetchBlob.fs;
-//   window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest;
-//   window.Blob = Blob;
-
-  let uploadBlob = null;
-  const imageRef = firebase
+export function uploadImage(data) {
+	const { blob, uid } = data;
+  const ref = firebase
     .storage()
     .ref()
-    .child('test.jpg');
-  const mime = 'image/jpg';
-  fs.readFile(image, 'base64')
-    .then(data => {
-      return Blob.build(data, { type: `${mime};BASE64` });
-    })
-    .then(blob => {
-      uploadBlob = blob;
-      return imageRef.put(blob, { contentType: mime });
-    })
-    .then(() => {
-      uploadBlob.close();
-      return imageRef.getDownloadURL();
-    })
-    .then(url => {
-      // URL of the image uploaded on Firebase storage
-      console.log(url);
-    })
-    .catch(error => {
-      console.log(error);
-    });
+    .child(`${uid}/receipt.jpg`);
+  ref.put(blob).then(snapshot => {
+    console.tron.log('Uploaded a blob or file!');
+  });
 }
 
 export function getAuthUser() {

@@ -48,20 +48,20 @@ function* loginFlow(data) {
 }
 
 function* authHandler(actionReq) {
-    // watch for REGISTER_REQUEST or LOGIN_REQUEST action
-    // set action
-    // const actionReq = yield take([types.REGISTER_REQUEST, types.LOGIN_REQUEST]);
-    let authUser;
-    if (actionReq.type === types.REGISTER_REQUEST) {
-      // pass in data and run registerFlow in forked taskReq
-      authUser = yield call(registerFlow, actionReq.data);
-    } else if (actionReq.type === types.LOGIN_REQUEST) {
-      // pass in data and run loginFlow in forked taskReq
-      authUser = yield call(loginFlow, actionReq.data);
-    }
-    if (authUser) {
-      yield put({ type: types.AUTH_REQUEST, authUser });
-    }
+  // watch for REGISTER_REQUEST or LOGIN_REQUEST action
+  // set action
+  // const actionReq = yield take([types.REGISTER_REQUEST, types.LOGIN_REQUEST]);
+  let authUser;
+  if (actionReq.type === types.REGISTER_REQUEST) {
+    // pass in data and run registerFlow in forked taskReq
+    authUser = yield call(registerFlow, actionReq.data);
+  } else if (actionReq.type === types.LOGIN_REQUEST) {
+    // pass in data and run loginFlow in forked taskReq
+    authUser = yield call(loginFlow, actionReq.data);
+  }
+  if (authUser) {
+    yield put({ type: types.AUTH_REQUEST, authUser });
+  }
 }
 
 function* verifyEmailFlow() {
@@ -141,11 +141,15 @@ function* logoutFlow() {
 }
 
 export function* watchInitialization() {
-  yield take(types.INITIALIZATION_START);
-  // initialize firebase and wait for completion
-  yield call(fbAPI.initializeFirebase);
-  const authUser = yield call(fbAPI.getAuthUser);
-  yield put({ type: types.AUTH_REQUEST, authUser });
+  try {
+    yield take(types.INITIALIZATION_START);
+    // initialize firebase and wait for completion
+    yield call(fbAPI.initializeFirebase);
+    const authUser = yield call(fbAPI.getAuthUser);
+    yield put({ type: types.AUTH_REQUEST, authUser });
+  } catch (error) {
+    console.tron.log(error);
+  }
 }
 
 export function* watchAuthentication() {
