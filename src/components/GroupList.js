@@ -4,8 +4,18 @@ import { GroupDetail } from './GroupDetail';
 
 class GroupList extends Component {
   state = { groups: [
-    <GroupDetail />,
-    <GroupDetail />
+    {
+      name: 'Gang Gang',
+      people: 'Simon Hoque, Corrin Alanis'
+    },
+    {
+      name: 'Food and Boba',
+      people: 'Anna Sim, Dylan McCoy'
+    },
+    {
+      name: 'Lab Group',
+      people: 'Brian Cheung, Sam Wang'
+    }
   ] };
 
     // componentWillMount() {
@@ -15,7 +25,7 @@ class GroupList extends Component {
 
   renderGroups() {
     return this.state.groups.map(group => 
-      <GroupDetail />
+      <GroupDetail key={group.name} name={group.name} people={group.people} />
     );
   }
 

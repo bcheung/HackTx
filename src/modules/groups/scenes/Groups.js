@@ -22,7 +22,7 @@ class Groups extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <HeaderIcons navigation={this.props.navigation} />
+        <HeaderIcons navigation={this.props.navigation} title='Groups' />
         <GroupList />
       </View>
     );
