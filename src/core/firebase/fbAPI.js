@@ -17,6 +17,8 @@ const firebaseConfig = {
 
 let auth;
 let firestore;
+let storage;
+// let functions;
 let settings;
 export function initializeFirebase() {
   console.tron.log('Initialize Firebase');
@@ -25,8 +27,21 @@ export function initializeFirebase() {
   console.tron.log('Initialize Firebase auth');
   auth = firebase.auth();
   firestore = firebase.firestore();
+  storage = firebase.storage();
+  //   functions = firebase.functions();
   settings = { timestampsInSnapshots: true };
   firestore.settings(settings);
+}
+
+export function uploadImage(data) {
+	const { blob, uid } = data;
+  const ref = firebase
+    .storage()
+    .ref()
+    .child(`${uid}/receipt.jpg`);
+  ref.put(blob).then(snapshot => {
+    console.tron.log('Uploaded a blob or file!');
+  });
 }
 
 export function getAuthUser() {
@@ -162,7 +177,7 @@ export function createUserDoc(data, authUser) {
     .set({
       firstName,
       lastName,
-      email,
+      email
     })
     .catch(error => {
       throw error;
