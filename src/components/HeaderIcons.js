@@ -17,11 +17,11 @@ export default class HeaderIcons extends React.Component {
             </Button>
           </Left>
           <Body>
-            <Title>Header</Title>
+            <Title>{this.props.title}</Title>
           </Body>
           <Right>
             <Button transparent>
-              <Icon name='beer' />
+              <Icon name='ios-add-circle-outline' />
             </Button>
           </Right>
         </Header>

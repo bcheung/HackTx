@@ -6,11 +6,11 @@ import { GroupList, HeaderIcons } from '../../../components';
 class Groups extends Component {
   static navigationOptions = {
     tabBarLabel: 'Screen Group',
-    drawerIcon: () => {
-      return (
-        <Text>LOLKMS</Text>
-      );
-    }
+    // drawerIcon: () => {
+    //   return (
+    //     <Text>LOLKMS</Text>
+    //   );
+    // }
     // headerRight: (
     //   <Button
     //     onPress={() => alert('This is a button!')}
@@ -22,7 +22,7 @@ class Groups extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <HeaderIcons navigation={this.props.navigation} />
+        <HeaderIcons navigation={this.props.navigation} title='Groups' />
         <GroupList />
       </View>
     );

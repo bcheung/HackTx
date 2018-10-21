@@ -1,7 +1,8 @@
 import {
   createSwitchNavigator,
   createStackNavigator,
-  createDrawerNavigator
+  createDrawerNavigator,
+  createMaterialTopTabNavigator
 } from 'react-navigation';
 import Splash from '../../modules/auth/scenes/Splash';
 import Initialization from '../../modules/auth/scenes/Initialization';
@@ -50,18 +51,49 @@ const AuthStack = createStackNavigator(
 //   }
 // );
 
-const AppSideBar = createDrawerNavigator(
+export const HomeNav = createMaterialTopTabNavigator(
   {
-    Groups: {
-      path: '/',
-      screen: Groups,
-    },
+    Settings: { screen: Settings },
+    Other: { screen: Settings }
   },
   {
-    initialRouteName: 'Groups',
+    flex: 1,
+    flexGrow: 1, 
+    height: 200,
+    initialRouteName: 'Settings',
+    swipeEnabled: true,
+    animationEnabled: true,
+    tabBarOptions: {
+      style: {
+        borderRadius: 10,
+        borderColor: '#aaa',
+        borderWidth: 1,
+        backgroundColor: '#eee',
+        flexGrow: 1,
+        justifyContent: 'center'
+      },
+      labelStyle: {
+        color: 'black'
+      },
+      indicatorStyle: {
+        backgroundColor: 'rgba(52, 52, 52, 0)'
+      },
+      activeColor: '#aaa'
+    }
+  }
+);
+
+const AppSideBar = createDrawerNavigator(
+  {
+    Home: { screen: Home },
+    Groups: { screen: Groups },
+  },
+  {
+    initialRouteName: 'Home',
     drawerPosition: 'left',
   }
 );
+
 
 // const AppSwitch = createSwitchNavigator(
 //   {

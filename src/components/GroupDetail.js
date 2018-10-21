@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 
-const GroupDetail = () => {
+const GroupDetail = (props) => {
   const {
     containerStyle, thumbnailStyle, thumbnailContainerStyle, groupInfoStyle, statusPicStyle
   } = styles;
@@ -18,17 +18,17 @@ const GroupDetail = () => {
 
         <View style={groupInfoStyle}>
           <Text style={{ fontSize: 30 }}>
-            GangGang
+            {props.name}
           </Text>
           <Text>
-            member names
+            {props.people}
           </Text>
         </View>
 
         <View style={thumbnailContainerStyle}>
           <Image
             style={statusPicStyle}
-            source={require('../../assets/Logo.png')}
+            source={require('../../assets/dollar-symbol.png')}
           />
         </View>
       </TouchableOpacity>
@@ -61,8 +61,9 @@ const styles = {
     alignItems: 'flex-start',
   },
   statusPicStyle: {
-    height: 50,
-    width: 50, 
+    height: 30,
+    width: 30, 
+    marginRight: 5
   }
 };
 
