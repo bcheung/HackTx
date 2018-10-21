@@ -7,8 +7,6 @@ import './src/core/reactotron/ReactotronConfig';
 import configureStore from './src/redux/configureStore';
 import { RootNavigator } from './src/core/navigation/RouterConfig';
 import NavigationService from './src/core/navigation/NavigationService';
-import ReceiptScanner from './src/modules/reciept_scanner/scenes/ReceiptScanner';
-
 const store = configureStore();
 
 function cacheImages(images) {
@@ -66,26 +64,25 @@ export default class App extends Component {
 
 
   render() {
-	return <ReceiptScanner />;
-    // if (!this.state.isLoadingComplete) {
-    //   console.tron.log('render App.js AppLoading');
-    //   return (
-    //     <AppLoading
-    //       startAsync={this._loadAssetsAsync}
-    //       onError={this._handleLoadingError}
-    //       onFinish={this._handleFinishLoading}
-    //     />
-    //   );
-    // }
-    // console.tron.log('render App.js Provider');
-    // return (
-    //   <Provider store={store}>
-    //     <RootNavigator
-    //       ref={navigatorRef => {
-    //         NavigationService.setTopLevelNavigator(navigatorRef);
-    //       }}
-    //     />
-    //   </Provider>
-    // );
+    if (!this.state.isLoadingComplete) {
+      console.tron.log('render App.js AppLoading');
+      return (
+        <AppLoading
+          startAsync={this._loadAssetsAsync}
+          onError={this._handleLoadingError}
+          onFinish={this._handleFinishLoading}
+        />
+      );
+    }
+    console.tron.log('render App.js Provider');
+    return (
+      <Provider store={store}>
+        <RootNavigator
+          ref={navigatorRef => {
+            NavigationService.setTopLevelNavigator(navigatorRef);
+          }}
+        />
+      </Provider>
+    );
   }
 }
