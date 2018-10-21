@@ -476,7 +476,7 @@ class CreateNote extends Component {
     const { selectedItemObjects } = this.state;
 
     return selectedItemObjects.length
-      ? `I like ${selectedItemObjects
+      ? `${selectedItemObjects
           .map((item, i) => {
             let label = `${item.title}, `;
             if (i === selectedItemObjects.length - 2) label = `${item.title} and `;
