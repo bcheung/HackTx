@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { View, Text } from 'react-native';
 import { logoutRequest } from '../../auth/actions';
-import { Card, CardSection, Button, Spinner } from '../../../components';
+import { Card, CardSection, Button, Spinner, HeaderIcons } from '../../../components';
 
 class SettingsScreen extends Component {
   onLogout = () => {
@@ -17,6 +18,8 @@ class SettingsScreen extends Component {
 
   render() {
     return (
+		<View style={{ flex: 1 }}>
+        <HeaderIcons navigation={this.props.navigation} title='Groups' />
         <CardSection
           style={{
             alignSelf: 'center',
@@ -31,6 +34,8 @@ class SettingsScreen extends Component {
         >
           {this.renderButton()}
         </CardSection>
+      </View>
+        
     );
   }
 }

@@ -68,7 +68,7 @@ const AppSideBar = createDrawerNavigator(
     Settings: { screen: Settings }
   },
   {
-    initialRouteName: 'Groups',
+    initialRouteName: 'Home',
     drawerPosition: 'left'
   }
 );

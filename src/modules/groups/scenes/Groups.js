@@ -7,9 +7,6 @@ class Groups extends Component {
   static navigationOptions = {
     tabBarLabel: 'Screen Group',
     drawerIcon: () => {
-      return (
-        <Text>Test</Text>
-      );
     }
     // headerRight: (
     //   <Button

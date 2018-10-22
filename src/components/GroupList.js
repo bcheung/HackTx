@@ -5,15 +5,15 @@ import { GroupDetail } from './GroupDetail';
 class GroupList extends Component {
   state = { groups: [
     {
-      name: 'Gang Gang',
+      name: 'Squad',
       people: 'Simon Hoque, Corrin Alanis'
     },
     {
-      name: 'Food and Boba',
+      name: 'Roadtrip',
       people: 'Anna Sim, Dylan McCoy'
     },
     {
-      name: 'Lab Group',
+      name: 'Roomies',
       people: 'Brian Cheung, Sam Wang'
     }
   ] };
